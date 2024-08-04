@@ -1,9 +1,10 @@
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, FlatList, Image, TouchableOpacity, Dimensions } from 'react-native';
 import React, { useRef } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import styles from './Styles/CategoriesStyles'; // Import styles
 
-const { width, height } = Dimensions.get('window');
+const { width } = Dimensions.get('window');
 
 export default function Categories({ categoryList }) {
   const chunks = [];
@@ -60,48 +61,4 @@ export default function Categories({ categoryList }) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    marginTop: height * 0.01, // Responsive margin top
-    paddingHorizontal: width * 0.05, // Responsive padding
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: height * 0.01, // Responsive margin bottom
-  },
-  text: {
-    fontSize: width * 0.05, // Responsive font size
-    fontWeight: 'bold',
-  },
-  more: {
-    color: '#000',
-  },
-  image: {
-    width: '70%',
-    height: undefined,
-    aspectRatio: 1, // Maintain a square aspect ratio
-  },
-  imageContainer: {
-    width: (width / 3) - 50, // Responsive width
-    height: (width / 3) - 50, // Responsive height
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: width * 0.02, // Responsive padding
-    borderWidth: 1,
-    borderColor: '#000',
-    margin: width * 0.01, // Responsive margin
-    marginRight: width * 0.07, // Responsive margin
-    borderRadius: width * 0.05, // Responsive border radius
-    marginBottom: height * 0.02, // Responsive margin bottom
-  },
-  itemName: {
-    marginTop: height * 0.005, // Responsive margin top
-    textAlign: 'center',
-    fontSize: width * 0.03, // Responsive font size
-    color: '#000',
-  },
-});
 
