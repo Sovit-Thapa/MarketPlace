@@ -1,9 +1,11 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, Image, TouchableOpacity, StyleSheet, Dimensions } from 'react-native';
 import React from 'react';
 import * as WebBrowser from 'expo-web-browser';
 import { useOAuth } from '@clerk/clerk-expo';
 
 WebBrowser.maybeCompleteAuthSession();
+
+const { width, height } = Dimensions.get('window');
 
 export default function LoginScreen() {
   const { startOAuthFlow } = useOAuth({ strategy: 'oauth_google' });
@@ -35,7 +37,7 @@ export default function LoginScreen() {
       <View style={styles.innerContainer}>
         <Text style={styles.title}>Community Marketplace</Text>
         <Text style={styles.subtitle}>
-          Buy & Sell Marketplace where you can sell item and real money.
+          Buy & Sell Marketplace where you can sell items and make real money.
         </Text>
         <TouchableOpacity onPress={onPress} style={styles.button}>
           <Text style={styles.buttonText}>Get Started</Text>
@@ -48,37 +50,40 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    justifyContent: 'center',
   },
   image: {
-    width: '100%',
-    height: 500,
+    width: width,
+    height: height * 0.4,
     resizeMode: 'cover',
   },
   innerContainer: {
-    padding: 20,
-    borderTopLeftRadius: 30,
-    borderTopRightRadius: 30,
+    padding: width * 0.05,
+    borderTopLeftRadius: width * 0.1,
+    borderTopRightRadius: width * 0.1,
     backgroundColor: 'white',
-    marginTop: -20,
+    marginTop: -width * 0.1,
   },
   title: {
-    fontSize: 30,
+    fontSize: width * 0.08,
     fontWeight: 'bold',
   },
   subtitle: {
-    fontSize: 18,
+    fontSize: width * 0.05,
     color: 'slategray',
-    marginTop: 10,
+    marginTop: width * 0.03,
   },
   button: {
-    padding: 10,
+    paddingVertical: width * 0.03,
+    paddingHorizontal: width * 0.1,
     backgroundColor: 'blue',
-    borderRadius: 50,
-    marginTop: 100,
+    borderRadius: width * 0.1,
+    marginTop: width * 0.2,
+    alignSelf: 'center',
   },
   buttonText: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: width * 0.05,
   },
 });

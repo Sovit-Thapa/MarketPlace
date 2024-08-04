@@ -1,6 +1,8 @@
-import { View, FlatList, StyleSheet, Text } from 'react-native';
+import { View, FlatList, StyleSheet, Text, Dimensions } from 'react-native';
 import React from 'react';
 import MarketItem from './MarketItem';
+
+const { width } = Dimensions.get('window');
 
 export default function LatestItemList({ latestItemList, heading }) {
   return (
@@ -11,7 +13,7 @@ export default function LatestItemList({ latestItemList, heading }) {
         keyExtractor={(item, index) => index.toString()}
         numColumns={2}
         renderItem={({ item }) => <MarketItem item={item} />}
-        contentContainerStyle={styles.flatListContent} 
+        contentContainerStyle={styles.flatListContent}
       />
     </View>
   );
@@ -20,15 +22,17 @@ export default function LatestItemList({ latestItemList, heading }) {
 const styles = StyleSheet.create({
   latestItemListContainer: {
     flex: 1,
-    marginLeft: -9,
+    marginHorizontal: width * 0.02, // Responsive margin
   },
   text: {
     fontWeight: 'bold',
-    fontSize: 20,
-    marginLeft: 30,
+    fontSize: width * 0.05, // Responsive font size
+    marginBottom: width * 0.03, // Responsive margin
+    marginLeft: width * 0.04, // Responsive margin
   },
   flatListContent: {
-    paddingHorizontal: 10,
-    paddingBottom: 20,
+    paddingHorizontal: width * 0.02, // Responsive padding
+    paddingBottom: width * 0.05, // Responsive padding
+    marginRight: -width * 0.05, // Responsive margin
   },
 });

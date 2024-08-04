@@ -35,7 +35,6 @@ export default function AddPostScreen() {
       allowsEditing: true,
       aspect: [4, 4],
       quality: 1,
-      
     });
 
     console.log(result);
@@ -87,7 +86,7 @@ export default function AddPostScreen() {
         <Text style={styles.subheading}>Fill in the details below to add a new post.</Text>
 
         <Formik
-          initialValues={{ name: '', desc: '', category: '', address: '', price: '', image: '', userName: '', userEmail: '', userImage: '', createdDate:Date.now() }}
+          initialValues={{ name: '', desc: '', category: '', address: '', price: '', image: '', userName: '', userEmail: '', userImage: '', createdDate: Date.now() }}
           validationSchema={validationSchema}
           onSubmit={(values, { resetForm }) => onSubmitMethod(values, { resetForm })}
         >
@@ -96,9 +95,8 @@ export default function AddPostScreen() {
               <View>
                 <TouchableOpacity onPress={() => pickImage(setFieldValue)}>
                   {image ?
-                    <Image source={{ uri: image }} style={{ width: 100, height: 100, marginBottom: 20, borderRadius: 20 }} />
-                    : <Image source={require('./../../assets/images/holder.webp')}
-                      style={{ width: 100, height: 100, borderRadius: 20 }} />
+                    <Image source={{ uri: image }} style={styles.image} />
+                    : <Image source={require('./../../assets/images/holder.webp')} style={styles.image} />
                   }
                 </TouchableOpacity>
                 {errors.image && touched.image && (
@@ -116,10 +114,10 @@ export default function AddPostScreen() {
                 )}
 
                 <TextInput
-                  style={styles.input}
+                  style={styles.descriptionInput}
                   placeholder='Description'
                   value={values.desc}
-                  numberOfLines={4}
+                  multiline
                   onChangeText={handleChange('desc')}
                 />
                 {errors.desc && touched.desc && (
@@ -148,11 +146,11 @@ export default function AddPostScreen() {
                 )}
 
                 <View style={styles.pickerContainer}>
-                  <Picker selectedValue={values?.category} onValueChange={handleChange('category')}>
-                    {values.category === "" && <Picker.Item label="None" value="" />}
-                    {categoryList && categoryList.map((category, index) => {
-                      return <Picker.Item key={index} label={category.name} value={category.name} />
-                    })}
+                  <Picker selectedValue={values.category} onValueChange={handleChange('category')}>
+                    <Picker.Item label="Select a category" value="" />
+                    {categoryList.map((category, index) => (
+                      <Picker.Item key={index} label={category.name} value={category.name} />
+                    ))}
                   </Picker>
                 </View>
                 {errors.category && touched.category && (
@@ -180,7 +178,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollView: {
-    padding: 40,
+    padding: 20,
+  },
+  image: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    borderRadius: 20,
   },
   input: {
     borderWidth: 1,
@@ -191,23 +195,32 @@ const styles = StyleSheet.create({
     marginTop: 20,
     textAlignVertical: 'top',
   },
+  descriptionInput: {
+    borderWidth: 1,
+    padding: 12,
+    borderRadius: 10,
+    paddingHorizontal: 15,
+    fontSize: 18,
+    marginTop: 20,
+    textAlignVertical: 'top',
+    height: 100, // Adjust height to show approximately 4 lines
+  },
   buttonContainer: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 50, 
-    height: 50, 
+    borderRadius: 50,
+    height: 50,
     width: '70%',
-    backgroundColor: 'green', 
+    backgroundColor: 'green',
   },
   buttonText: {
-    color: 'white', 
-    fontSize: 18, 
+    color: 'white',
+    fontSize: 18,
   },
   pickerContainer: {
     borderWidth: 1,
     borderRadius: 10,
-    marginTop: 20
+    marginTop: 20,
   },
   heading: {
     fontSize: 32,

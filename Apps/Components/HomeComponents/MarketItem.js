@@ -1,67 +1,63 @@
-import { View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native'
-import React from 'react'
+import { View, Text, TouchableOpacity, Image, StyleSheet, Dimensions } from 'react-native';
+import React from 'react';
 import { useNavigation } from '@react-navigation/native';
 
-export default function MarketItem({item}) {
+const { width } = Dimensions.get('window');
 
-  const navigation = useNavigation(); 
+export default function MarketItem({ item }) {
+  const navigation = useNavigation();
 
   return (
     <TouchableOpacity 
-    onPress={()=>navigation.push('ProductDetail', {product: item})}
-    style={styles.imageContainer}>
-            <View style={styles.imageWrapper}>
-              <Image source={{ uri: item.image }} style={styles.image} />
-              <Text style={styles.itemCategory}>{item.category}</Text>
-              <Text style={styles.itemName}>{item.name}</Text>
-              <Text style={styles.itemPrice}>{"$ "+item.price}</Text>
-            </View>
-          </TouchableOpacity>
-  )
+      onPress={() => navigation.push('ProductDetail', { product: item })}
+      style={styles.imageContainer}
+    >
+      <View style={styles.imageWrapper}>
+        <Image source={{ uri: item.image }} style={styles.image} />
+        <Text style={styles.itemCategory}>{item.category}</Text>
+        <Text style={styles.itemName}>{item.name}</Text>
+        <Text style={styles.itemPrice}>{"$ " + item.price}</Text>
+      </View>
+    </TouchableOpacity>
+  );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    marginTop: 10,
-    marginLeft: 25,
-  },
   imageContainer: {
-    borderRadius: 25,
-    width: 210, 
-    height: 200, 
-    marginTop: 10,
-    marginBottom: 45,
+    borderRadius: width * 0.05, // Responsive border radius
+    width: width * 0.42, // Responsive width
+    height: width * 0.60, // Responsive height
+    margin: width * 0.02, // Responsive margin
   },
   imageWrapper: {
-    padding: 10,
+    flex: 1,
+    padding: width * 0.02, // Responsive padding
     borderWidth: 1,
     borderColor: 'black',
-    borderRadius: 25,
-    marginLeft: 25,
+    borderRadius: width * 0.05, // Responsive border radius
   },
   image: {
-    width: 170,
-    height: 120,
-    borderRadius: 25,
+    width: '100%',
+    height: width * 0.30, // Responsive height
+    borderRadius: width * 0.05, // Responsive border radius
   },
   itemName: {
-    fontSize: 18,
+    fontSize: width * 0.045, // Responsive font size
     fontWeight: 'bold',
-    marginTop: 10,
+    marginTop: width * 0.02, // Responsive margin
   },
   itemCategory: {
     backgroundColor: '#aee4ed',
-    borderRadius: 10,
-    fontSize: 16,
-    marginTop: 10,
+    borderRadius: width * 0.02, // Responsive border radius
+    fontSize: width * 0.04, // Responsive font size
+    marginTop: width * 0.02, // Responsive margin
     textAlign: 'center',
-    padding: 3,
+    padding: width * 0.02, // Responsive padding
   },
   itemPrice: {
-    fontSize: 18,
+    fontSize: width * 0.045, // Responsive font size
     color: '#0865a2',
     fontWeight: 'bold',
+    marginTop: width * 0.01, // Responsive margin
   },
- 
 });
-

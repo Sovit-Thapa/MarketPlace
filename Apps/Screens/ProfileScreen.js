@@ -1,9 +1,13 @@
-import { View, Text, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Alert, Dimensions } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native'; 
-import { requestPermissions, scheduleDailyNotification, cancelAllNotifications } from './../Settings/Notification'; 
+import { requestPermissions, scheduleDailyNotification, cancelAllNotifications, checkPermissions } from './../Settings/Notification'; 
+
+const { width, height } = Dimensions.get('window');
+
+const scaleFontSize = (size) => (size * width) / 375; // Base width
 
 export default function ProfileScreen() {
   const { user } = useUser();
@@ -12,17 +16,29 @@ export default function ProfileScreen() {
   const { signOut } = useAuth();
 
   useEffect(() => {
+    // Check notification permissions on mount
+    const fetchPermissions = async () => {
+      const hasPermission = await checkPermissions();
+      setIsNotificationsEnabled(hasPermission);
+    };
+
+    fetchPermissions();
   }, []);
 
-  const toggleSwitch = async () => {
-    const newState = !isNotificationsEnabled;
-    setIsNotificationsEnabled(newState);
-
-    if (newState) {
-      await requestPermissions();
-      await scheduleDailyNotification();
-    } else {
+  const toggleNotifications = async () => {
+    if (isNotificationsEnabled) {
+      // Disable notifications
+      setIsNotificationsEnabled(false);
       await cancelAllNotifications();
+    } else {
+      // Request permissions and enable notifications if granted
+      const granted = await requestPermissions();
+      if (granted) {
+        setIsNotificationsEnabled(true);
+        await scheduleDailyNotification();
+      } else {
+        Alert.alert("Permission Denied", "You need to grant notification permissions to enable notifications.");
+      }
     }
   };
 
@@ -56,25 +72,21 @@ export default function ProfileScreen() {
 
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={navigateToMyProductList}>
-          <Ionicons name="file-tray-stacked" size={50} color="white" />
+          <Ionicons name="file-tray-stacked" size={scaleFontSize(50)} color="white" />
           <Text style={styles.buttonText}>My Posts</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.toggleButton} onPress={toggleSwitch}>
-          <View style={[
-            styles.switchTrack,
-            { backgroundColor: isNotificationsEnabled ? '#efae4d' : '#d3d3d3' }
-          ]}>
-            <View style={[
-              styles.switchThumb,
-              { backgroundColor: '#fff', transform: [{ translateX: isNotificationsEnabled ? 30 : 0 }] }
-            ]} />
-          </View>
-          <Text style={styles.toggleText}>Notifications</Text>
+        <TouchableOpacity style={styles.notificationButton} onPress={toggleNotifications}>
+          <Ionicons
+            name={isNotificationsEnabled ? "checkbox-outline" : "square-outline"}
+            size={scaleFontSize(24)}
+            color="white"
+          />
+          <Text style={styles.notificationText}>Notifications</Text>
         </TouchableOpacity>
       </View>
 
       <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-        <Ionicons name="log-out" size={54} color="white" />
+        <Ionicons name="log-out" size={scaleFontSize(54)} color="white" />
         <Text style={styles.logoutText}>Logout</Text>
       </TouchableOpacity>
     </View>
@@ -85,91 +97,73 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'center', 
-    padding: 20,
-    marginTop: 50, 
+    padding: width * 0.05, // Responsive padding
+    marginTop: height * 0.05, // Responsive margin
   },
   image: {
-    width: 150,
-    height: 150,
-    borderRadius: 100, 
-    marginBottom: 10, 
+    width: width * 0.4, // Responsive width
+    height: width * 0.4, // Responsive height (square aspect ratio)
+    borderRadius: width * 0.2, // Responsive border radius
+    marginBottom: height * 0.02, // Responsive margin
   },
   username: {
-    fontSize: 30,
+    fontSize: scaleFontSize(30), // Responsive font size
     fontWeight: 'bold',
-    marginBottom: 5, 
+    marginBottom: height * 0.01, // Responsive margin
   },
   email: {
-    fontSize: 22,
+    fontSize: scaleFontSize(22), // Responsive font size
     color: 'black',
   },
   buttonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     width: '100%', 
-    marginTop: 20, 
+    marginTop: height * 0.02, // Responsive margin
   },
   button: {
     flex: 1,
-    height: 100, 
-    marginHorizontal: 5, 
+    height: height * 0.12, // Responsive height
+    marginHorizontal: width * 0.02, // Responsive margin
     backgroundColor: '#07518b', 
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25,
+    borderRadius: width * 0.05, // Responsive border radius
     flexDirection: 'row', 
   },
   buttonText: {
     color: '#fff', 
-    fontSize: 16,
-    marginLeft: 10, 
+    fontSize: scaleFontSize(16), // Responsive font size
+    marginLeft: width * 0.02, // Responsive margin
   },
-  toggleButton: {
+  notificationButton: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 100, 
-    marginHorizontal: 5, 
-    borderRadius: 25,
+    height: height * 0.12, // Responsive height
+    marginHorizontal: width * 0.02, // Responsive margin
+    borderRadius: width * 0.05, // Responsive border radius
     backgroundColor: '#07518b',
   },
-  toggleText: {
-    fontSize: 20,
+  notificationText: {
+    fontSize: scaleFontSize(14), // Responsive font size
     color: '#fff', 
-    marginRight: 10,
-  },
-  switchTrack: {
-    width: 50,
-    height: 30,
-    borderRadius: 15,
-    backgroundColor: '#d3d3d3', 
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 5,
-    marginRight: 10,
-  },
-  switchThumb: {
-    width: 20,
-    height: 20,
-    borderRadius: 10,
-    position: 'absolute',
-    top: 5,
-    left: 5,
+    marginLeft: width * 0.02, // Responsive margin
   },
   logoutButton: {
     width: '100%', 
-    height: 100,
+    height: height * 0.12, // Responsive height
     backgroundColor: '#d03446',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25,
-    marginTop: 20, 
+    borderRadius: width * 0.05, // Responsive border radius
+    marginTop: height * 0.02, // Responsive margin
     flexDirection: 'row', 
   },
   logoutText: {
     color: '#fff', 
-    fontSize: 22,
-    marginLeft: 10,
+    fontSize: scaleFontSize(22), // Responsive font size
+    marginLeft: width * 0.02, // Responsive margin
   },
 });
