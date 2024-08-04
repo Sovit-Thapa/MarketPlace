@@ -13,14 +13,14 @@ export const requestPermissions = async () => {
   const { status } = await Notifications.getPermissionsAsync();
   if (status !== 'granted') {
     const { status: newStatus } = await Notifications.requestPermissionsAsync();
-    return newStatus === 'granted'; // Return the permission status
+    return newStatus === 'granted'; 
   }
-  return true; // Permission already granted
+  return true; 
 };
 
 export const checkPermissions = async () => {
   const { status } = await Notifications.getPermissionsAsync();
-  return status === 'granted'; // Return whether the permission is granted
+  return status === 'granted'; 
 };
 
 export const scheduleDailyNotification = async () => {
@@ -30,7 +30,7 @@ export const scheduleDailyNotification = async () => {
       body: 'Explore our store to discover the latest additions and exciting new products.',
     },
     trigger: {
-      seconds: Platform.OS === 'ios' ? 61 : 6, // Short delay for testing
+      seconds: Platform.OS === 'ios' ? 61 : 6, 
       repeats: true,
     },
   });

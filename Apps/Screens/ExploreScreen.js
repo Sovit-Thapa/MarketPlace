@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { collection, onSnapshot, getFirestore, orderBy, query } from 'firebase/firestore';
 import { app } from '../../firebaseConfig';
 import LatestItemList from '../Components/HomeComponents/LatestItemList';
+import styles from './Styles/ExploreScreenStyles';
 
 export default function ExploreScreen() {
   const [products, setProducts] = useState([]);
@@ -37,16 +38,3 @@ export default function ExploreScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  text: {
-    fontSize: 23,
-    fontWeight: 'bold',
-    marginTop: 45,
-    marginLeft: 25,
-    marginBottom: 10,
-  },
-  flatListContent: {
-    paddingBottom: 20,
-    marginLeft: 8,
-  },
-});

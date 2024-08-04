@@ -2,7 +2,7 @@ import { View, Text, FlatList, Image, TouchableOpacity, Dimensions } from 'react
 import React, { useRef } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
-import styles from './Styles/CategoriesStyles'; // Import styles
+import styles from './Styles/CategoriesStyles'; 
 
 const { width } = Dimensions.get('window');
 
@@ -13,12 +13,12 @@ export default function Categories({ categoryList }) {
   }
 
   const navigation = useNavigation();
-  const flatListRef = useRef(null); // Create a ref for FlatList
+  const flatListRef = useRef(null); 
 
   const handleIconPress = () => {
     if (flatListRef.current) {
       flatListRef.current.scrollToOffset({
-        offset: (width / 3) * 2, // Scroll to the next section
+        offset: (width / 3) * 2, 
         animated: true,
       });
     }
@@ -33,7 +33,7 @@ export default function Categories({ categoryList }) {
         </TouchableOpacity>
       </View>
       <FlatList
-        ref={flatListRef} // Attach the ref to FlatList
+        ref={flatListRef} 
         data={chunks}
         horizontal={true}
         showsHorizontalScrollIndicator={false}

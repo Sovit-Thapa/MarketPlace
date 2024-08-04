@@ -1,7 +1,7 @@
 import { View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import styles from './Styles/MarketItemStyles'; // Import styles
+import styles from './Styles/MarketItemStyles'; 
 
 const { width } = Dimensions.get('window');
 

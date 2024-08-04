@@ -5,10 +5,11 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useUser } from '@clerk/clerk-expo';
 import { doc, deleteDoc, getFirestore, query, where, getDocs, collection } from 'firebase/firestore';
 import { app } from '../../firebaseConfig';
+import styles from './Styles/ProductDetailScreenStyles';
 
 const { width, height } = Dimensions.get('window');
 
-const scaleFontSize = (size) => (size * width) / 375; // Base width
+const scaleFontSize = (size) => (size * width) / 375; 
 
 const handleShareProduct = async (productInfo) => {
   try {
@@ -117,99 +118,3 @@ export default function ProductDetailScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width: '100%',
-  },
-  image: {
-    width: '100%',
-    height: height * 0.4, // Responsive height
-    resizeMode: 'cover',
-  },
-  textContainer: {
-    paddingHorizontal: width * 0.05, // Responsive padding
-    paddingTop: height * 0.02, // Responsive padding
-  },
-  titleContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: scaleFontSize(28), // Responsive font size
-    fontWeight: 'bold',
-  },
-  price: {
-    fontSize: scaleFontSize(28), // Responsive font size
-    color: 'green',
-    fontWeight: 'bold',
-  },
-  category: {
-    fontSize: scaleFontSize(18), // Responsive font size
-    backgroundColor: 'lightblue',
-    paddingHorizontal: width * 0.03, // Responsive padding
-    paddingVertical: height * 0.01, // Responsive padding
-    borderRadius: width * 0.02, // Responsive border radius
-    marginTop: height * 0.01, // Responsive margin
-    alignSelf: 'flex-start',
-  },
-  descriptionHeading: {
-    fontSize: scaleFontSize(20), // Responsive font size
-    fontWeight: 'bold',
-    paddingHorizontal: width * 0.05, // Responsive padding
-    paddingTop: height * 0.02, // Responsive padding
-  },
-  description: {
-    fontSize: scaleFontSize(18), // Responsive font size
-    textAlign: 'justify',
-    paddingHorizontal: width * 0.05, // Responsive padding
-    paddingVertical: height * 0.02, // Responsive padding
-  },
-  userContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: width * 0.05, // Responsive padding
-    paddingVertical: height * 0.02, // Responsive padding
-    borderTopWidth: 1,
-    borderTopColor: '#ddd',
-    backgroundColor: '#d5e9ef',
-  },
-  userImage: {
-    width: width * 0.15, // Responsive width
-    height: width * 0.15, // Responsive height
-    borderRadius: (width * 0.15) / 2, // Responsive border radius
-    marginRight: width * 0.02, // Responsive margin
-  },
-  userInfo: {
-    flex: 1,
-  },
-  userName: {
-    fontSize: scaleFontSize(18), // Responsive font size
-    fontWeight: 'bold',
-  },
-  userEmail: {
-    fontSize: scaleFontSize(16), // Responsive font size
-    color: 'black',
-  },
-  button: {
-    backgroundColor: '#007bff',
-    borderRadius: width * 0.05, // Responsive border radius
-    paddingVertical: height * 0.015, // Responsive padding
-    paddingHorizontal: width * 0.05, // Responsive padding
-    marginHorizontal: width * 0.05, // Responsive margin
-    marginVertical: height * 0.02, // Responsive margin
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: scaleFontSize(16), // Responsive font size
-    fontWeight: 'bold',
-  },
-  shareIcon: {
-    marginRight: width * 0.02, // Responsive margin
-  },
-  deleteButton: {
-    backgroundColor: '#dc3545', // Responsive background color
-  },
-});

@@ -1,6 +1,6 @@
 import { View, FlatList, Image, Dimensions } from 'react-native';
 import React, { useEffect, useRef, useState } from 'react';
-import styles from './Styles/SliderStyles'; // Import styles
+import styles from './Styles/SliderStyles'; 
 
 const { width } = Dimensions.get('window');
 

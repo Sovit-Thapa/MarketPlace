@@ -4,6 +4,7 @@ import { useRoute } from '@react-navigation/native';
 import { collection, getFirestore, query, where, onSnapshot } from 'firebase/firestore';
 import { app } from '../../firebaseConfig';
 import LatestItemList from '../Components/HomeComponents/LatestItemList';
+import styles from './Styles/ItemListByCategoryStyles';
 
 export default function ItemList() {
   const { params } = useRoute();
@@ -36,16 +37,3 @@ export default function ItemList() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  text: {
-    padding: 10,
-    fontSize: 18,
-    fontWeight: 'bold',
-  },
-});

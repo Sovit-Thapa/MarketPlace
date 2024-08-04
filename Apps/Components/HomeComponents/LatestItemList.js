@@ -1,7 +1,7 @@
 import { View, FlatList, Text, Dimensions } from 'react-native';
 import React from 'react';
 import MarketItem from './MarketItem';
-import styles from './Styles/LatestItemListStyles'; // Import styles
+import styles from './Styles/LatestItemListStyles'; 
 
 const { width } = Dimensions.get('window');
 

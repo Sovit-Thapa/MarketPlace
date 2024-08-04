@@ -6,6 +6,7 @@ import Header from '../Components/HomeComponents/Header';
 import Slider from '../Components/HomeComponents/Slider';
 import Categories from '../Components/HomeComponents/Categories';
 import LatestItemList from '../Components/HomeComponents/LatestItemList'; 
+import styles from './Styles/HomeScreenStyles';
 
 export default function HomeScreen() {
   const db = getFirestore(app);
@@ -57,11 +58,3 @@ export default function HomeScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-  },
-  headerContainer: {
-    marginBottom: 10,
-  },
-});
