@@ -1,9 +1,9 @@
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, Dimensions, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, Dimensions } from 'react-native';
 import React, { useRef } from 'react';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
-const { width } = Dimensions.get('window');
+const { width, height } = Dimensions.get('window');
 
 export default function Categories({ categoryList }) {
   const chunks = [];
@@ -28,7 +28,7 @@ export default function Categories({ categoryList }) {
       <View style={styles.header}>
         <Text style={styles.text}>Categories</Text>
         <TouchableOpacity onPress={handleIconPress}>
-          <Ionicons name="arrow-forward" size={24} color="black" style={styles.more}/>
+          <Ionicons name="arrow-forward" size={24} color="black" style={styles.more} />
         </TouchableOpacity>
       </View>
       <FlatList
@@ -36,17 +36,17 @@ export default function Categories({ categoryList }) {
         data={chunks}
         horizontal={true}
         showsHorizontalScrollIndicator={false}
-        renderItem={({item}) => (
+        renderItem={({ item }) => (
           <FlatList
             data={item}
             numColumns={3}
             keyExtractor={(item) => item.name}
-            renderItem={({item}) => (
-              <TouchableOpacity 
+            renderItem={({ item }) => (
+              <TouchableOpacity
                 onPress={() => navigation.navigate('ItemList', { category: item.name })}
                 style={styles.imageContainer}
               >
-                <Image 
+                <Image
                   source={{ uri: item?.icon }}
                   style={styles.image}
                 />
@@ -63,21 +63,20 @@ export default function Categories({ categoryList }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
-    paddingHorizontal: 10, // Adjusted for responsive padding
+    marginTop: height * 0.01, // Responsive margin top
+    paddingHorizontal: width * 0.05, // Responsive padding
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: height * 0.01, // Responsive margin bottom
   },
   text: {
-    fontSize: 20,
+    fontSize: width * 0.05, // Responsive font size
     fontWeight: 'bold',
-    marginLeft: 10,
   },
-  more: { 
+  more: {
     color: '#000',
   },
   image: {
@@ -90,19 +89,19 @@ const styles = StyleSheet.create({
     height: (width / 3) - 50, // Responsive height
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 10,
+    padding: width * 0.02, // Responsive padding
     borderWidth: 1,
     borderColor: '#000',
-    margin: 5,
-    marginLeft: 10,
-    marginRight: 20,
-    borderRadius: 20,
-    marginBottom: 10,
+    margin: width * 0.01, // Responsive margin
+    marginRight: width * 0.07, // Responsive margin
+    borderRadius: width * 0.05, // Responsive border radius
+    marginBottom: height * 0.02, // Responsive margin bottom
   },
   itemName: {
-    marginTop: 4,
+    marginTop: height * 0.005, // Responsive margin top
     textAlign: 'center',
-    fontSize: 13,
+    fontSize: width * 0.03, // Responsive font size
     color: '#000',
   },
 });
+
