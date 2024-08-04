@@ -35,9 +35,9 @@ export default function LoginScreen() {
         style={styles.image}
       />
       <View style={styles.innerContainer}>
-        <Text style={styles.title}>Community Marketplace</Text>
+        <Text style={styles.title}>Thrift Haven</Text>
         <Text style={styles.subtitle}>
-          Buy & Sell Marketplace where you can sell items and make real money.
+          Discover Deals and Find Treasures—Buy, Sell, and Earn with Ease!
         </Text>
         <TouchableOpacity onPress={onPress} style={styles.button}>
           <Text style={styles.buttonText}>Get Started</Text>
