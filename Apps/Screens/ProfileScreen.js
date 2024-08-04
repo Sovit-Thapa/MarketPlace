@@ -2,17 +2,16 @@ import { View, Text, Image, StyleSheet, TouchableOpacity, Alert } from 'react-na
 import React, { useState, useEffect } from 'react';
 import { useAuth, useUser } from '@clerk/clerk-expo';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation
-import { requestPermissions, scheduleDailyNotification, cancelAllNotifications } from './../Settings/Notification'; // Import functions from notification.js
+import { useNavigation } from '@react-navigation/native'; 
+import { requestPermissions, scheduleDailyNotification, cancelAllNotifications } from './../Settings/Notification'; 
 
 export default function ProfileScreen() {
   const { user } = useUser();
   const [isNotificationsEnabled, setIsNotificationsEnabled] = useState(false);
-  const navigation = useNavigation(); // Initialize useNavigation
+  const navigation = useNavigation(); 
   const { signOut } = useAuth();
 
   useEffect(() => {
-    // Optionally, you could check notification permissions on component mount
   }, []);
 
   const toggleSwitch = async () => {
@@ -34,7 +33,7 @@ export default function ProfileScreen() {
       [
         {
           text: "OK",
-          onPress: () => signOut() // Proceed with sign out if confirmed
+          onPress: () => signOut() 
         },
         {
           text: "Cancel",
@@ -46,7 +45,7 @@ export default function ProfileScreen() {
   };
 
   const navigateToMyProductList = () => {
-    navigation.navigate('MyProductList'); // Navigate to MyProductListScreen
+    navigation.navigate('MyProductList'); 
   };
 
   return (
@@ -85,20 +84,20 @@ export default function ProfileScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center', // Centers content horizontally
+    alignItems: 'center', 
     padding: 20,
-    marginTop: 50, // Space from the top
+    marginTop: 50, 
   },
   image: {
     width: 150,
     height: 150,
-    borderRadius: 100, // Makes the image round
-    marginBottom: 10, // Space between image and username
+    borderRadius: 100, 
+    marginBottom: 10, 
   },
   username: {
     fontSize: 30,
     fontWeight: 'bold',
-    marginBottom: 5, // Space between username and email
+    marginBottom: 5, 
   },
   email: {
     fontSize: 22,
@@ -107,44 +106,44 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    width: '100%', // Full width of the container
-    marginTop: 20, // Space above the button and toggle
+    width: '100%', 
+    marginTop: 20, 
   },
   button: {
     flex: 1,
-    height: 100, // Equal height for button
-    marginHorizontal: 5, // Space between button and toggle
-    backgroundColor: '#07518b', // Same color as toggle
+    height: 100, 
+    marginHorizontal: 5, 
+    backgroundColor: '#07518b', 
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 25, // Rounded corners
-    flexDirection: 'row', // Align icon and text horizontally
+    borderRadius: 25,
+    flexDirection: 'row', 
   },
   buttonText: {
-    color: '#fff', // Button text color
+    color: '#fff', 
     fontSize: 16,
-    marginLeft: 10, // Space between icon and text
+    marginLeft: 10, 
   },
   toggleButton: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    height: 100, // Same height as button
-    marginHorizontal: 5, // Space between button and toggle
-    borderRadius: 25, // Rounded corners
-    backgroundColor: '#07518b', // Same color as button
+    height: 100, 
+    marginHorizontal: 5, 
+    borderRadius: 25,
+    backgroundColor: '#07518b',
   },
   toggleText: {
     fontSize: 20,
-    color: '#fff', // Match the color of the button and switch
+    color: '#fff', 
     marginRight: 10,
   },
   switchTrack: {
     width: 50,
     height: 30,
     borderRadius: 15,
-    backgroundColor: '#d3d3d3', // Default track color
+    backgroundColor: '#d3d3d3', 
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 5,
@@ -159,18 +158,18 @@ const styles = StyleSheet.create({
     left: 5,
   },
   logoutButton: {
-    width: '100%', // Full width of the container
+    width: '100%', 
     height: 100,
-    backgroundColor: '#d03446', // Color for logout button
+    backgroundColor: '#d03446',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 25,
-    marginTop: 20, // Space above the logout button
-    flexDirection: 'row', // Align icon and text horizontally
+    marginTop: 20, 
+    flexDirection: 'row', 
   },
   logoutText: {
-    color: '#fff', // Text color for logout button
+    color: '#fff', 
     fontSize: 22,
-    marginLeft: 10, // Space between icon and text
+    marginLeft: 10,
   },
 });

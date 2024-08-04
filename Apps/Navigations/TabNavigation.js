@@ -1,10 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../Screens/HomeScreen';
-import ExploreScreen from '../Screens/ExploreScreen';
 import AddPostScreen from '../Screens/AddPostScreen';
-import ProfileScreen from '../Screens/ProfileScreen';
 import { Ionicons } from '@expo/vector-icons';
 import HomeScreenStackNavigation from './HomeScreenStackNavigation';
 import ExploreScreenStackNavigation from './ExploreScreenStackNavigation';

@@ -17,7 +17,6 @@ export default function MyProductListScreen() {
         where("userEmail", "==", user.primaryEmailAddress.emailAddress)
       );
 
-      // Set up a real-time listener for the query
       const unsubscribe = onSnapshot(q, (snapshot) => {
         const postsList = snapshot.docs.map(doc => doc.data());
         setPosts(postsList);
@@ -25,7 +24,6 @@ export default function MyProductListScreen() {
         console.error("Error fetching posts: ", error);
       });
 
-      // Cleanup listener on unmount
       return () => unsubscribe();
     }
   }, [user, db]);

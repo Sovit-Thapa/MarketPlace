@@ -138,8 +138,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#ddd',
-    maxHeight: 200, // limit the height of the dropdown
-    zIndex: 1000, // make sure it overlays other components
+    maxHeight: 200, 
+    zIndex: 1000, 
   },
   resultContainer: {
     flexDirection: 'row',

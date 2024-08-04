@@ -11,7 +11,7 @@ export default function LatestItemList({ latestItemList, heading }) {
         keyExtractor={(item, index) => index.toString()}
         numColumns={2}
         renderItem={({ item }) => <MarketItem item={item} />}
-        contentContainerStyle={styles.flatListContent} // Add styling to ensure proper spacing
+        contentContainerStyle={styles.flatListContent} 
       />
     </View>
   );

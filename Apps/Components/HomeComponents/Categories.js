@@ -4,7 +4,6 @@ import Ionicons from '@expo/vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Categories({ categoryList }) {
-  // Split the categoryList into chunks of 6 (3 columns * 2 rows)
   const chunks = [];
   for (let i = 0; i < categoryList.length; i += 6) {
     chunks.push(categoryList.slice(i, i + 6));
@@ -33,7 +32,7 @@ export default function Categories({ categoryList }) {
                   style={styles.imageContainer}>
                     <Image 
                       source={{uri:item?.icon}}
-                      style={styles.image} // Use StyleSheet for image styling
+                      style={styles.image}
                     />
                     <Text style={styles.itemName}>{item?.name}</Text>
                   </TouchableOpacity>
@@ -49,44 +48,42 @@ export default function Categories({ categoryList }) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10, // Adjust this value as needed
+    marginTop: 10, 
   },
   text: {
     fontSize: 20,
     fontWeight: 'bold',
-    marginLeft: 25, // Adjust this value as needed
+    marginLeft: 25,
   },
   image: {
-    width: 50, // Adjust this value as needed
-    height: 50, // Adjust this value as needed
+    width: 50, 
+    height: 50,
   },
   imageContainer: {
-    width: 100, // Adjust this value as needed
-    height: 100, // Adjust this value as needed
+    width: 100, 
+    height: 100, 
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 10, // Adjust this value as needed
-    borderWidth: 1, // Adjust this value as needed
-    borderColor: '#000', // Adjust this value as needed
-    margin: 22, // Adjust this value as needed
-    borderRadius: 20, // Adjust this value as needed
-    marginTop: 10, // Adjust this value as needed
+    padding: 10, 
+    borderWidth: 1, 
+    borderColor: '#000', 
+    margin: 22, 
+    borderRadius: 20, 
+    marginTop: 10, 
   },
   itemName: {
-    marginTop: 4, // Adjust this value as needed
+    marginTop: 4, 
     textAlign: 'center',
-    fontSize: 15, // Adjust this value as needed
-    color: '#000', // Adjust this value as needed
-    // Add other styles as needed
+    fontSize: 15, 
+    color: '#000', 
   },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  more: { // Adjust this value as needed
-    color: '#000', // Adjust this value as needed
-    // Add other styles as needed
-    marginRight: 30, // Adjust this value as needed
+  more: { 
+    color: '#000', 
+    marginRight: 30, 
   },
 });

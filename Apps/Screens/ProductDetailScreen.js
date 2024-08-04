@@ -6,7 +6,6 @@ import { useUser } from '@clerk/clerk-expo';
 import { doc, deleteDoc, getFirestore, query, where, getDocs, collection } from 'firebase/firestore';
 import { app } from '../../firebaseConfig';
 
-// Function to handle share button press
 const handleShareProduct = async (productInfo) => {
   try {
     const result = await Share.share({
@@ -22,8 +21,6 @@ const handleShareProduct = async (productInfo) => {
     console.error('Error sharing product:', error);
   }
 };
-
-// Function to handle delete button press
 
 
 export default function ProductDetailScreen() {
@@ -108,9 +105,6 @@ export default function ProductDetailScreen() {
       </View>
       {user?.primaryEmailAddress?.emailAddress === productInfo.userEmail ? (
         <>
-          {/* <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('EditProduct', { product: productInfo })}>
-            <Text style={styles.buttonText}>Edit Product</Text>
-          </TouchableOpacity> */}
           <TouchableOpacity style={[styles.button, styles.deleteButton]} onPress={confirmDelete}>
             <Text style={styles.buttonText}>Delete Product</Text>
           </TouchableOpacity>
@@ -214,9 +208,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   shareIcon: {
-    marginRight: 10, // Adjust margin as needed
+    marginRight: 10, 
   },
   deleteButton: {
-    backgroundColor: '#dc3545', // Red color for delete button
+    backgroundColor: '#dc3545', 
   },
 });

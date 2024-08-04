@@ -12,7 +12,6 @@ export default function ItemList() {
 
   useEffect(() => {
     if (params) {
-      // Listen for real-time updates
       const q = query(collection(db, 'UserPost'), where('category', '==', params.category));
       const unsubscribe = onSnapshot(q, (snapshot) => {
         const itemsArray = snapshot.docs.map(doc => doc.data());
@@ -21,7 +20,6 @@ export default function ItemList() {
         console.error('Error fetching items:', error);
       });
 
-      // Cleanup subscription on component unmount
       return () => unsubscribe();
     }
   }, [params]);

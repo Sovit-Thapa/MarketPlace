@@ -52,10 +52,8 @@ export default function AddPostScreen() {
     const blob = await response.blob();
     const storageRef = ref(storage, 'marketPlacePost/' + Date.now() + '.jpg');
     uploadBytes(storageRef, blob).then((snapshot) => {
-      //console.log('Uploaded a blob or file !');
     }).then((response) => {
       getDownloadURL(storageRef).then(async (url) => {
-        //console.log(url);
         value.image = url;
         value.userName = user.fullName;
         value.userEmail = user.primaryEmailAddress.emailAddress;
@@ -65,8 +63,8 @@ export default function AddPostScreen() {
         if (docRef.id) {
           setLoading(false);
           Alert.alert("Success", "Post added successfully");
-          resetForm(); // Reset the form after successful submission
-          setImage(null); // Reset the image state
+          resetForm(); 
+          setImage(null); 
         }
       });
     });
@@ -92,7 +90,7 @@ export default function AddPostScreen() {
           validationSchema={validationSchema}
           onSubmit={(values, { resetForm }) => onSubmitMethod(values, { resetForm })}
         >
-          {({ handleChange, handleBlur, handleSubmit, setFieldValue, values, errors, touched }) => {
+          {({ handleChange, handleSubmit, setFieldValue, values, errors, touched }) => {
             return (
               <View>
                 <TouchableOpacity onPress={() => pickImage(setFieldValue)}>
@@ -181,7 +179,6 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   scrollView: {
-   // paddingTop: 40,
     padding: 40,
   },
   input: {
@@ -197,14 +194,14 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 50, // This will make the button oval
-    height: 50, // This will make the button big
-    width: '70%', // This will make the button long
-    backgroundColor: 'green', // This will change the background color of the button
+    borderRadius: 50, 
+    height: 50, 
+    width: '70%',
+    backgroundColor: 'green', 
   },
   buttonText: {
-    color: 'white', // This will change the text color of the button
-    fontSize: 18, // This will change the font size of the button text
+    color: 'white', 
+    fontSize: 18, 
   },
   pickerContainer: {
     borderWidth: 1,

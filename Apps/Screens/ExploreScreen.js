@@ -9,18 +9,15 @@ export default function ExploreScreen() {
   const db = getFirestore(app);
 
   useEffect(() => {
-    // Create a query to get the products in descending order by 'createdDate'
     const productsQuery = query(collection(db, 'UserPost'), orderBy('createdDate', 'desc'));
     
-    // Set up a real-time listener for the query
     const unsubscribe = onSnapshot(productsQuery, (snapshot) => {
       const productsList = snapshot.docs.map(doc => doc.data());
-      setProducts(productsList); // Update state with the new products list
+      setProducts(productsList); 
     }, (error) => {
       console.error('Error fetching products:', error);
     });
 
-    // Clean up the listener when the component unmounts
     return () => unsubscribe();
   }, [db]);
 

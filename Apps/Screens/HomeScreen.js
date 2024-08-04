@@ -5,7 +5,7 @@ import { app } from '../../firebaseConfig';
 import Header from '../Components/HomeComponents/Header';
 import Slider from '../Components/HomeComponents/Slider';
 import Categories from '../Components/HomeComponents/Categories';
-import LatestItemList from '../Components/HomeComponents/LatestItemList'; // Updated import
+import LatestItemList from '../Components/HomeComponents/LatestItemList'; 
 
 export default function HomeScreen() {
   const db = getFirestore(app);
@@ -29,7 +29,6 @@ export default function HomeScreen() {
       setLatestItemList(latestItems);
     });
 
-    // Cleanup listeners on unmount
     return () => {
       unsubscribeSliders();
       unsubscribeCategories();
@@ -51,8 +50,8 @@ export default function HomeScreen() {
       keyExtractor={(item, index) => index.toString()}
       numColumns={2}
       ListHeaderComponent={renderListHeader}
-      renderItem={({ item }) => <View />} // Placeholder, use LatestItemList to display items
-      ListFooterComponent={<LatestItemList latestItemList={latestItemList} heading={'Latest Items'} />} // Use LatestItemList here
+      renderItem={({ item }) => <View />} 
+      ListFooterComponent={<LatestItemList latestItemList={latestItemList} heading={'Latest Items'} />} 
       contentContainerStyle={styles.container}
     />
   );

@@ -3,10 +3,8 @@ import React, { useEffect, useRef, useState } from 'react'
 
 export default function Slider({ sliderList }) {
   const flatListRef = useRef();
-  const [index, setIndex] = useState(0); // Add this line
+  const [index, setIndex] = useState(0); 
 
-
-  // Add this useEffect hook
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => {
@@ -14,15 +12,15 @@ export default function Slider({ sliderList }) {
         flatListRef.current.scrollToIndex({ animated: true, index: newIndex });
         return newIndex;
       });
-    }, 7000); // Change this value to adjust the scrolling speed
+    }, 7000); 
 
-    return () => clearInterval(interval); // This will clear Interval when component unmounts
+    return () => clearInterval(interval); 
   }, [sliderList]);
 
   return (
     <View>
       <FlatList
-        ref={flatListRef} // Add this line
+        ref={flatListRef} 
         data={sliderList}
         horizontal={true}
         pagingEnabled={true}

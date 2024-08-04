@@ -2,7 +2,6 @@ import * as Notifications from 'expo-notifications';
 import { Alert, Platform } from 'react-native';
 import { useEffect } from 'react';
 
-// Handle notifications when the app is in the foreground
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -38,7 +37,6 @@ export const cancelAllNotifications = async () => {
   await Notifications.cancelAllScheduledNotificationsAsync();
 };
 
-// Add this function to handle notifications when the app is open
 export const useForegroundNotificationListener = () => {
   useEffect(() => {
     const subscription = Notifications.addNotificationReceivedListener(notification => {
