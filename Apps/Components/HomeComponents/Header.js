@@ -92,17 +92,17 @@ export default function Header() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'row',
+    marginTop: 40, 
+    paddingHorizontal: 20, 
   },
   image: {
     width: 50,
     height: 50,
     borderRadius: 25,
-    marginLeft: 20,
-    marginTop: 40,
   },
   nameContainer: {
     marginLeft: 10,
-    marginTop: 40,
+    justifyContent: 'center',
   },
   welcomeText: {
     fontSize: 18,
@@ -117,8 +117,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderRadius: 50,
     marginTop: 15,
-    marginLeft: 20,
-    marginRight: 20,
+    marginHorizontal: 20,
     flexDirection: 'row',
     borderWidth: 1,
     borderColor: '#60A5FA',
@@ -130,16 +129,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   dropdown: {
-    position: 'absolute',
-    top: 160,
-    left: 20,
-    right: 20,
+    position: 'relative', 
     backgroundColor: 'white',
     borderRadius: 10,
     borderWidth: 1,
     borderColor: '#ddd',
     maxHeight: 200, 
-    zIndex: 1000, 
+    marginHorizontal: 20,
+    marginTop: 10,
+    zIndex: 1000,
   },
   resultContainer: {
     flexDirection: 'row',

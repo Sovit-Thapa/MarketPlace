@@ -35,6 +35,7 @@ export default function AddPostScreen() {
       allowsEditing: true,
       aspect: [4, 4],
       quality: 1,
+      
     });
 
     console.log(result);
